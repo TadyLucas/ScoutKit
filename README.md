@@ -1,6 +1,6 @@
-# ReconCraft
+# ScoutKit
 
-ReconCraft is a modular, extensible network and web reconnaissance framework designed to automate the initial phases of penetration testing and Capture The Flag (CTF) challenges like Hack The Box (HTB). It helps you quickly discover open ports, identify services, enumerate web applications, and organize your findings — all in one place.
+ScoutKit is a modular, extensible network and web reconnaissance framework designed to automate the initial phases of penetration testing and Capture The Flag (CTF) challenges like Hack The Box (HTB). It helps you quickly discover open ports, identify services, enumerate web applications, and organize your findings — all in one place.
 
 ---
 
@@ -28,8 +28,8 @@ ReconCraft is a modular, extensible network and web reconnaissance framework des
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/reconcraft.git
-    cd reconcraft
+    git clone https://github.com/TadyLucas/ScoutKit.git
+    cd ScoutKit
     ```
 
 2. Install Python dependencies:
