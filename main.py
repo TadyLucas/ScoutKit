@@ -33,7 +33,12 @@ def fullRecon(target):
 
     with open(f"{output_file}", "w") as f:
         for res in result:
-            f.write(res)
+            if isinstance(res, list):
+                for item in res:
+                    for subItem in item:
+                        f.write(str(subItem) + "\n")
+            else:
+                f.write(str(res) + "\n")
 
 
 if __name__ == "__main__":
