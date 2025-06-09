@@ -3,6 +3,9 @@
 ScoutKit is a modular, extensible network and web reconnaissance framework designed to automate the initial phases of penetration testing and Capture The Flag (CTF) challenges like Hack The Box (HTB). It helps you quickly discover open ports, identify services, enumerate web applications, and organize your findings — all in one place.
 
 ---
+## Neded tools
+- nmap
+- whatweb 
 
 ## Features
 

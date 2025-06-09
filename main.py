@@ -1,8 +1,9 @@
-from modules import port_scan, core, http_enum
+from modules import port_scan, core, http_enum, whatWeb
 import os
 import argparse
 import sys
-import requests
+import time
+import modules.const as const
 
 parser = argparse.ArgumentParser(prog='ScoutKit',
                                  description="Toolkit for recon of CTF, boxes or pentest"
@@ -10,7 +11,13 @@ parser = argparse.ArgumentParser(prog='ScoutKit',
 parser.add_argument('target')
 args = parser.parse_args()
 
-def fullRecon(target):    
+def fullRecon(target): 
+    # Start timer
+    start = time.perf_counter()
+
+    # Print banner
+    core.printBanner()
+
     result = []
 
     #Create base dir
@@ -23,22 +30,50 @@ def fullRecon(target):
         os.remove(output_file)
 
     # Port scanning
-    ports = port_scan.scan(target)
-    result.append(core.modifyOutput("\n".join(ports), "Port scan"))
+    scannedPorts = port_scan.scan(target)
+    result.append(scannedPorts)
+    
+    httpPorts = http_enum.alivePorts(target)
+    if httpPorts:
+        for port in httpPorts:
+            scheme = "https" if port == 443 else "http"
+            url = f"{scheme}://{target}:{port}"
 
-    # Http recon
-    httpEnumResults = http_enum.enum(target)
-    if httpEnumResults:
-        result.append(httpEnumResults)
+            # Http recon
+            httpEnumResults = http_enum.enum(url)
+            if httpEnumResults:
+                result.append(httpEnumResults)
+    
+            # Whatweb recon
+            whatWebRes = whatWeb.enum(url)
+            if whatWebRes:
+                result.append(whatWebRes)
+    else:
+        print(f"{const.RED}[x] No web available{const.RESET}")
+
+    
+            
 
     with open(f"{output_file}", "w") as f:
         for res in result:
             if isinstance(res, list):
                 for item in res:
-                    for subItem in item:
-                        f.write(str(subItem) + "\n")
+                    if isinstance(item, list):
+                        for subItem in item:
+                            f.write(str(subItem) + "\n")
+                    else:
+                        f.write(str(item) + "\n")
+
             else:
+                print(res)
                 f.write(str(res) + "\n")
+
+    end = time.perf_counter()
+    duration = end - start
+    minutes = int(duration // 60)
+    seconds = int(duration % 60)
+
+    print(f"Recon completed in {const.RED + str(minutes) + const.RESET}m and {const.RED + str(seconds) + const.RESET}s")
 
 
 if __name__ == "__main__":

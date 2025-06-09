@@ -1,51 +1,44 @@
 import requests
 import socket
 from bs4 import BeautifulSoup
+import modules.const as const
 
-def enum(ip):
-    print(f"[+] ScoutKit: HTTP enumeration {ip}")
-    allResults = []
-    res = alivePorts(ip)
-    if not res:
-        return False
+def enum(url):
+    print(f"{const.CYAN}[+] ScoutKit: HTTP enumeration")
+    result = []
     
-    for port in res:
-        scheme = "https" if port == 443 else "http"
-        url = f"{scheme}://{ip}:{port}"
+    try:
+        response = requests.get(url, timeout=3, verify=False, allow_redirects=True)
 
-        
-        try:
-            response = requests.get(url, timeout=3, verify=False, allow_redirects=True)
+        # Status code
+        status = response.status_code
+        print(f"{const.GREEN} [i] Status: {status}")
 
-            # Status code
-            status = response.status_code
-            print(f" [i] Status: {status}")
+        # Headers
+        server = response.headers.get('Server', 'Unknown') 
+        powered_by = response.headers.get('X-Powered-By', 'Unknown')
+        print(f"{const.GREEN} [i] Server: {server}")
+        print(f"{const.GREEN} [i] X-Powered-By: {powered_by}")
 
-            # Headers
-            server = response.headers.get('Server', 'Unknown') 
-            powered_by = response.headers.get('X-Powered-By', 'Unknown')
-            print(f" [i] Server: {server}")
-            print(f" [i] X-Powered-By: {powered_by}")
+        # Title
+        soup = BeautifulSoup(response.text, 'html.parser')
+        title = soup.title.string.strip() if soup.title else "No Title"
+        print(f"{const.GREEN} [i] Title:  {title}")
 
-            # Title
-            soup = BeautifulSoup(response.text, 'html.parser')
-            title = soup.title.string.strip() if soup.title else "No Title"
-            print(f" [i] Title:  {title}")
+        result = [
+            f"\nHTTP Enumeration",
+            f"--------------",
+            f"[+] URL: {url}",
+            f"Status: {status}",
+            f"Title:  {title}",
+            f"Server: {server}",
+            f"X-Powered-By: {powered_by}",
+        ]
 
-            result = [
-                f"\n HTTP Enumeration",
-                f"--------------",
-                f"[+] URL: {url}",
-                f"Status: {status}",
-                f"Title:  {title}",
-                f"Server: {server}",
-                f"X-Powered-By: {powered_by}",
-            ]
-            allResults.append(result)
+    except:
+        pass
 
-        except:
-            pass
-    return allResults
+    return result
 
 
 def alivePorts(target):
