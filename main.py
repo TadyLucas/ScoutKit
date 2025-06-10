@@ -1,4 +1,4 @@
-from modules import port_scan, core, http_enum, whatWeb
+from modules import port_scan, core, http_enum, whatWeb, dir_bruteforce
 import os
 import argparse
 import sys
@@ -48,6 +48,9 @@ def fullRecon(target):
             whatWebRes = whatWeb.enum(url)
             if whatWebRes:
                 result.append(whatWebRes)
+
+            # Dir bruteforce
+            bruteForce = dir_bruteforce.bruteForce(url)
     else:
         print(f"{const.RED}[x] No web available{const.RESET}")
 
