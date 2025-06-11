@@ -30,8 +30,8 @@ def fullRecon(target):
         os.remove(output_file)
 
     # Port scanning
-    scannedPorts = port_scan.scan(target)
-    result.append(scannedPorts)
+    # scannedPorts = port_scan.scan(target)
+    # result.append(scannedPorts)
     
     httpPorts = http_enum.alivePorts(target)
     if httpPorts:
@@ -39,18 +39,20 @@ def fullRecon(target):
             scheme = "https" if port == 443 else "http"
             url = f"{scheme}://{target}:{port}"
 
-            # Http recon
-            httpEnumResults = http_enum.enum(url)
-            if httpEnumResults:
-                result.append(httpEnumResults)
+            # # Http recon
+            # httpEnumResults = http_enum.enum(url)
+            # if httpEnumResults:
+            #     result.append(httpEnumResults)
     
-            # Whatweb recon
-            whatWebRes = whatWeb.enum(url)
-            if whatWebRes:
-                result.append(whatWebRes)
+            # # Whatweb recon
+            # whatWebRes = whatWeb.enum(url)
+            # if whatWebRes:
+            #     result.append(whatWebRes)
 
             # Dir bruteforce
             bruteForce = dir_bruteforce.bruteForce(url)
+            if bruteForce:
+                result.append(bruteForce)
     else:
         print(f"{const.RED}[x] No web available{const.RESET}")
 

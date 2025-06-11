@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import modules.const as const
 
 def enum(url):
-    print(f"{const.CYAN}[+] ScoutKit: HTTP enumeration")
+    print(f"{const.CYAN}[+] ScoutKit: HTTP enumeration {url}")
     result = []
     
     try:

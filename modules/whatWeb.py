@@ -4,7 +4,7 @@ import modules.const as const
 def enum(url):
     result = []
     try:
-        print(f"{const.CYAN}[+] Scanning HTTP with Whatweb")
+        print(f"{const.CYAN}[+] Scanning HTTP with Whatweb {url}")
         whatWeb = subprocess.run(["whatweb", "--color", "never", url], capture_output=True, text=True)
         whatWeb = whatWeb.stdout.split(",")
                 
