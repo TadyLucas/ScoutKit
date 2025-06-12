@@ -1,4 +1,4 @@
-from modules import port_scan, core, http_enum, whatWeb, dir_bruteforce
+from modules import port_scan, core, http_enum, whatWeb, dir_bruteforce, subdomain_bruteforce
 import os
 import argparse
 import sys
@@ -49,10 +49,14 @@ def fullRecon(target):
             # if whatWebRes:
             #     result.append(whatWebRes)
 
-            # Dir bruteforce
-            bruteForce = dir_bruteforce.bruteForce(url)
-            if bruteForce:
-                result.append(bruteForce)
+            # # Dir bruteforce
+            # bruteForce = dir_bruteforce.bruteForce(url)
+            # if bruteForce:
+            #     result.append(bruteForce)
+
+            subdomains = subdomain_bruteforce.enumerate(url)
+            if subdomains:
+                result.append(subdomains)
     else:
         print(f"{const.RED}[x] No web available{const.RESET}")
 
@@ -88,8 +92,8 @@ if __name__ == "__main__":
     else:
         target_ip = input("Target IP or hostname")
 
-    if not core.validate(target_ip) :
-        sys.exit("[x] Target ip address is in wrong format. Try again e.g. 10.10.12.11")
+    # if not core.validate(target_ip) :
+    #     sys.exit("[x] Target ip address is in wrong format. Try again e.g. 10.10.12.11")
     
     if not core.isHostAlive(target_ip):
         sys.exit("[x] Cannot reach the host")

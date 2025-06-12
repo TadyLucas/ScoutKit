@@ -22,21 +22,6 @@ def bruteForce(url):
         resultFiles = subprocess.run(cmd, capture_output=True, text=True)
         result.append(printRes(resultFiles.stdout))
         
-        # Dirs
-        print(f"{const.CYAN}[+] ScoutKit: Bruteforcing files on webserver {url}{const.RESET}")
-        cmd = [
-            "gobuster", "dir",
-            "-u", url,
-            "-w", wordlist,
-            "-t", "50",
-            "--no-error",
-            "--status-codes", "200,204,301,302,307,403",
-            "--status-codes-blacklist", "",
-        ]
-
-        resultDirs = subprocess.run(cmd, capture_output=True, text=True)
-        result.append(printRes(resultDirs.stdout.strip().splitlines()))
-
     except:
         print(f"{const.RED}[x] Bruteforce failed{const.RESET}")
 
