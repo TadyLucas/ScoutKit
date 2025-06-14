@@ -12,8 +12,14 @@ def validate(ip):
         return False
 
 
-def modifyOutput(output, head):
-    return f"{head.upper()}\n------------\n{output}"
+def printBanner():
+    from rich.console import Console
+    import pyfiglet
+
+    console = Console()
+    banner = pyfiglet.figlet_format("ScoutKit")
+    console.print(banner, style="bold cyan")
+
 
 def isHostAlive(ip):
     response = ping(ip, timeout=1)

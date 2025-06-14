@@ -1,0 +1,9 @@
+[package]
+name = "subdomains"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+trust-dns-resolver = "0.23"
+rayon = "1.10"
+url = "2.5"
