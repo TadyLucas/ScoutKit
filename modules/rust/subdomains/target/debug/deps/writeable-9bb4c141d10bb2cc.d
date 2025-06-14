@@ -1,0 +1,12 @@
+/home/lucas/coding/ScoutKit/modules/rust/subdomains/target/debug/deps/libwriteable-9bb4c141d10bb2cc.rmeta: /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/lib.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/cmp.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/impls.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/ops.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/parts_write_adapter.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/testing.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/to_string_or_borrow.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/try_writeable.rs
+
+/home/lucas/coding/ScoutKit/modules/rust/subdomains/target/debug/deps/writeable-9bb4c141d10bb2cc.d: /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/lib.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/cmp.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/impls.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/ops.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/parts_write_adapter.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/testing.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/to_string_or_borrow.rs /home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/try_writeable.rs
+
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/lib.rs:
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/cmp.rs:
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/impls.rs:
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/ops.rs:
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/parts_write_adapter.rs:
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/testing.rs:
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/to_string_or_borrow.rs:
+/home/lucas/.cargo/registry/src/index.crates.io-6f17d22bba15001f/writeable-0.6.1/src/try_writeable.rs:

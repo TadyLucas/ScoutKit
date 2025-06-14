@@ -15,13 +15,20 @@ fn load_wordlist(path: &str) -> Vec<String>{
     BufReader::new(file).lines().filter_map(Result::ok).collect()
 }
 
-fn resolve_subdomain(sub: &str, resolver: &Resolver) -> Option<String>{
-    if resolver.lookup_ip(sub).is_ok(){
-        Some(sub.to_string())
-    }else{
-        None
+fn resolve_subdomain(sub: &str, resolver: &Resolver) -> Option<String> {
+    println!("Resolving: {}", sub);
+    match resolver.lookup_ip(sub) {
+        Ok(_response) => {
+            println!("Success: {}", sub);
+            Some(sub.to_string())
+        },
+        Err(err) => {
+            println!("Failed: {} ({})", sub, err);
+            None
+        }
     }
 }
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -32,10 +39,14 @@ fn main() {
     let url = &args[1];
     let wordlist_path = &args[2];
 
+    println!("Using wordlist: {}", wordlist_path);
+    
+    
     let Some(domain) = extract_domain(url) else {
         std::process::exit(1);
-    }
-
+    };
+    
+    println!("Target domain: {}", domain);
     let words = load_wordlist(wordlist_path);
     let resolver = Resolver::new(ResolverConfig::default(), ResolverOpts::default()).unwrap();
 
