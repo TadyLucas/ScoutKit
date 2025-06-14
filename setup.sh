@@ -8,7 +8,7 @@ command_exists() {
 echo "[*] Updating package list..."
 sudo apt update -qq > /dev/null 2>&1
 
-for pkg in nmap gobuster whatweb rustc cargo python3-venv; do
+for pkg in nmap gobuster whatweb python3-venv; do
     if ! command_exists $pkg && ! dpkg -s $pkg > /dev/null 2>&1; then
         echo "[*] Installing $pkg..."
         sudo apt install -y -qq $pkg > /dev/null 2>&1
@@ -31,20 +31,22 @@ else
     echo "[*] requirements.txt not found, skipping Python package installation."
 fi
 
-INSTALL_DIR="/opt/scoutkit"
-LAUNCHER="/usr/local/bin/scoutkit"
+# Create the launcher script
+echo "[*] Creating scoutkit launcher..."
 
-echo "[*] Building ScoutKit Rust project..."
-cd "$INSTALL_DIR"
-cargo build --quiet
-
-echo "[*] Creating launcher script..."
-sudo tee "$LAUNCHER" > /dev/null <<EOF
+sudo tee /usr/local/bin/scoutkit > /dev/null <<'EOF'
 #!/bin/bash
-cd "$INSTALL_DIR" || exit 1
-./target/debug/subdomains "\$@"
+cd /opt/scoutkit || { echo "ScoutKit directory not found!"; exit 1; }
+if [ -f venv/bin/activate ]; then
+    source venv/bin/activate
+else
+    echo "Virtual environment not found. Please run the setup script first."
+    exit 1
+fi
+python3 main.py "$@"
+deactivate
 EOF
 
-sudo chmod +x "$LAUNCHER"
+sudo chmod +x /usr/local/bin/scoutkit
 
 echo "[*] Setup complete! You can now run 'scoutkit' from anywhere."

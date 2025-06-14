@@ -3,3 +3,4 @@ ping3
 bs4
 rich
 pyfiglet
+dnspython

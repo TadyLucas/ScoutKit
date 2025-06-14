@@ -3,9 +3,6 @@
 ScoutKit is a modular, extensible network and web reconnaissance framework designed to automate the initial phases of penetration testing and Capture The Flag (CTF) challenges like Hack The Box (HTB). It helps you quickly discover open ports, identify services, enumerate web applications, and organize your findings — all in one place.
 
 ---
-## Neded tools
-- nmap
-- whatweb 
 
 ## Features
 
@@ -31,23 +28,25 @@ ScoutKit is a modular, extensible network and web reconnaissance framework desig
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/TadyLucas/ScoutKit.git
-    cd ScoutKit
+    sudo git clone https://github.com/TadyLucas/ScoutKit.git /opt/scoutkit
+    cd /opt/scoutkit
     ```
 
-2. Install Python dependencies:
+2. Setup file:
 
     ```bash
-    pip install -r requirements.txt
+      chmod +x setup.sh
     ```
 
-3. Ensure `nmap` is installed and accessible from your terminal.
+3. Install dependencies: 
 
----
+    ```bash
+    sudo ./setup
+    ```
 
-## Usage
+3. Run tool:
 
-Run the main script and enter the target IP or hostname:
+    ```bash
+    scoutkit <hostname>
+    ```
 
-```bash
-python3 main.py
