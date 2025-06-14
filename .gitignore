@@ -1,3 +1,35 @@
 /venv/
 /results/*
-/home/l3tox/ScoutKit/modules/rust/subdomains/target/
+# Rust build artifacts
+/target/
+/**/*.rs.bk
+
+# Cargo files to ignore
+**/*.lock
+
+# Python virtual environment
+venv/
+.env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# OS generated files
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.bak
+*.tmp
+t/
